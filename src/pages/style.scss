@@ -1,0 +1,32 @@
+.details {
+  display: flex;
+  gap: 10px;
+  // flex-wrap: wrap;
+}
+.poster {
+  display: inline-block;
+  width: 300px;
+}
+.details-movie-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-img {
+  width: 300px;
+  height: 300px;
+  background-color: red;
+  background-image: url('../../assets/deploy-status.png');
+  background-size: contain;
+}
+.actor {
+  border: 1px dotted grey;
+}
+
+.actors {
+  width: auto;
+}
+.back-btn {
+  width: 50px;
+  height: 25px;
+}
