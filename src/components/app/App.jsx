@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-// import { Notfound } from '../../pages';
+import { Notfound } from '../../pages/notFound';
 import SharedHeader from '../shared/shared';
 
 import { Routes, Route } from 'react-router-dom';
@@ -22,7 +22,7 @@ export const App = () => {
             <Route path="coast" element={<Coast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
-          {/* <Route path="*" element={<Navigate to="/" />} /> */}
+          <Route path="*" element={<Notfound />} />
         </Route>
       </Routes>
     </div>
