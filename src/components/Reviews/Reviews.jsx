@@ -1,21 +1,15 @@
-import {
-  useLoaderData,
-  useLocation,
-  useRouteLoaderData,
-  useParams,
-  useOutletContext,
-} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const Reviews = () => {
+const Reviews = () => {
   const { movieId } = useParams();
   const [fetched, setFetched] = useState();
   useEffect(() => {
     axios(`https://api.themoviedb.org/3/movie/${Number(movieId)}/reviews`).then(
       r => setFetched(r.data.results)
     );
-  }, []);
+  }, [movieId]);
   console.log(fetched);
 
   return (
@@ -39,3 +33,5 @@ export const Reviews = () => {
     </div>
   );
 };
+
+export default Reviews;

@@ -1,19 +1,32 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import { useCallback, useRef, useMemo, useState, useEffect } from 'react';
-import axios from 'axios';
+import { Suspense, useRef, useEffect } from 'react';
+import axios from '../../api/axios';
 
-export const SharedHeader = () => {
-  const [list, setList] = useState();
+const SharedHeader = () => {
+  let refData = useRef([]);
 
   useEffect(() => {
-    axios('day').then(r => setList(() => r));
+    axios('day').then(r => (refData.current = r));
   }, []);
 
   return (
-    <nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/movies">Movies</NavLink>
-      <Outlet context={list} />
-    </nav>
+    <div>
+      <nav>
+        <div>
+          <NavLink className="link-header" to="/">
+            Home
+          </NavLink>
+          <NavLink className="link-header" to="/movies">
+            Movies
+          </NavLink>
+        </div>
+      </nav>
+      <hr />
+
+      <Suspense fallback={<div>Loadind........</div>}>
+        <Outlet context={refData.current} />
+      </Suspense>
+    </div>
   );
 };
+export default SharedHeader;

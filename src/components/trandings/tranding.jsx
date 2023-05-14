@@ -1,31 +1,29 @@
-import { useEffect, useContext, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import axios from '../../api/axios';
-import { createContext } from 'react';
 
-const MovieData = createContext(222);
-
-export const MovieClient = () => useContext(MovieData);
-
-export const Tranding = () => {
+const Tranding = () => {
   const [data, setData] = useState([]);
-  const ref = useRef(data);
-  console.log(ref);
+  const location = useLocation();
+  console.log(location);
   useEffect(() => {
     axios('day')
       .then(r => r.data.results)
-      .then(setData);
+      .then(setData)
+      .catch(console.log);
   }, []);
-  MovieClient();
+
   return (
-    <MovieData.Provider value>
-      <ul>
-        {data.map(el => (
-          <li key={el.id}>
-            <Link to={`movies/${el.id}`}>{el.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </MovieData.Provider>
+    <ul>
+      {data.map(el => (
+        <li key={el.id}>
+          <Link to={`movies/${el.id}`} state={{ from: location }}>
+            {el.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 };
+
+export default Tranding;

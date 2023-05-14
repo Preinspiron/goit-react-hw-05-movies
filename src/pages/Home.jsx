@@ -1,8 +1,15 @@
-import { Tranding } from '../components/trandings/tranding';
+// import Tranding from '../components/trandings/tranding';
+import './style.scss';
+import { lazy, Suspense } from 'react';
 
-export const Home = () => (
+const Tranding = lazy(() => import('../components/trandings/tranding'));
+const Home = () => (
   <>
     <h1>Tranding today</h1>
-    <Tranding />
+    <Suspense fallback={'123'}>
+      <Tranding />
+    </Suspense>
   </>
 );
+
+export default Home;

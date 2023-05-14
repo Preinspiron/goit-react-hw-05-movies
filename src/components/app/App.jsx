@@ -1,10 +1,16 @@
-import { Home, Notfound, Movies } from '../../pages';
-import { SharedHeader } from '..';
-import { Details } from '../../pages/MovieDetails';
+import { lazy } from 'react';
+import { Notfound } from '../../pages';
+import SharedHeader from '../shared/shared';
+
 import { Routes, Route } from 'react-router-dom';
 import s from './App.module.scss';
-import { Coast } from '../Coast/Coast';
-import { Reviews } from '../Reviews/Reviews';
+
+const Home = lazy(() => import('../../pages/Home'));
+const Details = lazy(() => import('../../pages/MovieDetails'));
+const Movies = lazy(() => import('../../pages/Movies'));
+const Coast = lazy(() => import('../coast/Coast'));
+const Reviews = lazy(() => import('../reviews/Reviews'));
+
 export const App = () => {
   return (
     <div className={s.container}>

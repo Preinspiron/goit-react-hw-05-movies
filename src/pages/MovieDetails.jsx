@@ -1,25 +1,25 @@
-import { useEffect, useContext, useState } from 'react';
-import { useOutletContext, useParams, Link, Outlet } from 'react-router-dom';
-import './style.scss';
+import { useEffect, Suspense, useState } from 'react';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { axiosById } from '../api/axios';
 
-export const Details = () => {
+const Details = () => {
   const [fetched, setFetched] = useState();
-
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
   const { movieId } = useParams();
 
   useEffect(() => {
     axiosById(movieId).then(setFetched).catch(console.log);
     // console.log(ganres);
-  }, []);
+  }, [movieId]);
 
   return (
     <>
-      <button className="back-btn" type="button">
-        back
-      </button>
+      <Link className="back-btn" to={backLinkHref}>
+        Back
+      </Link>
       {!fetched ? (
-        'Loading...'
+        'Loading...111'
       ) : (
         <div>
           <div className="details">
@@ -51,11 +51,14 @@ export const Details = () => {
               <li>
                 <Link to="reviews">Reviews</Link>
               </li>
-              <Outlet context={movieId} />
             </ul>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Outlet />
+            </Suspense>
           </div>
         </div>
       )}
     </>
   );
 };
+export default Details;

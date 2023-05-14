@@ -1,22 +1,16 @@
-import {
-  useLoaderData,
-  useLocation,
-  useRouteLoaderData,
-  useParams,
-  useOutletContext,
-} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import noimg from '../../images/no-img.jpg';
 
-export const Coast = () => {
+function Coast() {
   const { movieId } = useParams();
   const [fetched, setFetched] = useState();
   useEffect(() => {
     axios(`https://api.themoviedb.org/3/movie/${Number(movieId)}/credits`).then(
       r => setFetched(r.data.cast)
     );
-  }, []);
-  console.log(fetched);
+  }, [movieId]);
 
   return (
     <div>
@@ -25,18 +19,26 @@ export const Coast = () => {
         {fetched &&
           fetched.map((item, index) => (
             <li className="actor" key={index}>
-              <img
-                className={item.profile_path === null ? 'no-img' : ''}
-                src={`https://image.tmdb.org/t/p/w300/${item.profile_path}`}
-                alt={item.name}
-                height="300"
-              />
-              <p>{item.name}</p>
-              <p>{item.character}</p>
+              <div>
+                <img
+                  className={item.profile_path === null ? 'no-img' : ''}
+                  src={
+                    item.profile_path
+                      ? `https://image.tmdb.org/t/p/w300/${item.profile_path}`
+                      : noimg
+                  }
+                  alt={item.name}
+                  height="300"
+                  loading="lazy"
+                />
+                <p>{item.name}</p>
+                <p>{item.character}</p>
+              </div>
             </li>
           ))}
       </ul>
-      <img className="no-img" src="htts://" alt="" />
     </div>
   );
-};
+}
+
+export default Coast;
