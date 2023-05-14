@@ -24,7 +24,7 @@ const SharedHeader = () => {
       <hr />
 
       <Suspense fallback={<div>Loadind........</div>}>
-        <Outlet context={refData.current} />
+        <Outlet />
       </Suspense>
     </div>
   );

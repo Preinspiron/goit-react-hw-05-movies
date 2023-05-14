@@ -2,7 +2,7 @@ import { lazy } from 'react';
 // import { Notfound } from '../../pages';
 import SharedHeader from '../shared/shared';
 
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import s from './App.module.scss';
 
 const Reviews = lazy(() => import('../Reviews/Reviews'));
@@ -22,7 +22,7 @@ export const App = () => {
             <Route path="coast" element={<Coast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Route>
       </Routes>
     </div>
