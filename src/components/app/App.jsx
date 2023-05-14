@@ -8,7 +8,7 @@ import s from './App.module.scss';
 const Home = lazy(() => import('../../pages/Home'));
 const Details = lazy(() => import('../../pages/MovieDetails'));
 const Movies = lazy(() => import('../../pages/Movies'));
-const Coast = lazy(() => import('../coast/Coast'));
+// const Coast = lazy(() => import('../coast/Coast'));
 // const Reviews = lazy(() => import('../reviews/Reviews'));
 
 export const App = () => {
@@ -19,7 +19,7 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<Details />}>
-            <Route path="coast" element={<Coast />} />
+            {/* <Route path="coast" element={<Coast />} /> */}
             {/* <Route path="reviews" element={<Reviews />} /> */}
           </Route>
           <Route path="*" element={<Notfound />} />
