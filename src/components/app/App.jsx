@@ -5,11 +5,11 @@ import SharedHeader from '../shared/shared';
 import { Routes, Route } from 'react-router-dom';
 import s from './App.module.scss';
 
-const Home = lazy(() => import('../../pages/Home'));
-const Details = lazy(() => import('../../pages/MovieDetails'));
-const Movies = lazy(() => import('../../pages/Movies'));
-const Coast = lazy(() => import('../coast/Coast'));
-const Reviews = lazy(() => import('../reviews/Reviews'));
+const Home = lazy(() => import('pages/Home'));
+const Details = lazy(() => import('pages/MovieDetails'));
+const Movies = lazy(() => import('pages/Movies'));
+const Coast = lazy(() => import('components/coast/Coast'));
+const Reviews = lazy(() => import('components/reviews/Reviews'));
 
 const App = () => {
   return (
