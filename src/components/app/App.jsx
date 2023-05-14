@@ -11,7 +11,7 @@ const Movies = lazy(() => import('pages/Movies'));
 // const Coast = lazy(() => import('components/coast/Coast'));
 // const Reviews = lazy(() => import('components/reviews/Reviews'));
 
-const App = () => {
+export const App = () => {
   return (
     <div className={s.container}>
       <Routes>
@@ -28,4 +28,3 @@ const App = () => {
     </div>
   );
 };
-export default App;
