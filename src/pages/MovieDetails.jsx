@@ -7,6 +7,9 @@ const Details = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
   const { movieId } = useParams();
+  console.log(location);
+
+  console.log(backLinkHref);
 
   useEffect(() => {
     axiosById(movieId).then(setFetched).catch(console.log);
