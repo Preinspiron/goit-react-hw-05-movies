@@ -1,11 +1,11 @@
-import { useEffect, Suspense, useState } from 'react';
+import { useEffect, Suspense, useState, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { axiosById } from '../api/axios';
 
 const Details = () => {
   const [fetched, setFetched] = useState();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkHref = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
   console.log(location);
 
@@ -18,7 +18,7 @@ const Details = () => {
 
   return (
     <>
-      <Link className="back-btn" to={backLinkHref}>
+      <Link className="back-btn" to={backLinkHref.current}>
         Back
       </Link>
       {!fetched ? (
@@ -46,10 +46,12 @@ const Details = () => {
             </div>
           </div>
           <div>
-            <h2>Additional Information</h2>
+            <h2> Additional Information</h2>
             <ul>
               <li>
-                <Link to="coast">Cast</Link>
+                <Link to="coast" state={{ from: location }}>
+                  Cast
+                </Link>
               </li>
               <li>
                 <Link to="reviews">Reviews</Link>
